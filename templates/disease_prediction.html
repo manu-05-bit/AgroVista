@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGROVISTA</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+        :root {
+            --gradient-1: #a8e6cf;
+            --gradient-2: #dcedc1;
+            --gradient-3: #ffd3b6;
+            --primary-dark: #3d5a80;
+            --text-primary: #2d3436;
+            --text-secondary: #636e72;
+            --white: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Modern Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px var(--shadow-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #2ecc71, #3498db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: linear-gradient(45deg, var(--gradient-1), var(--gradient-2));
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+            border-radius: 0 0 50% 50% / 100px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Content & Form Styling */
+        .content {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feature-card, .info-box {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        #crop-prediction {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+
+        .file-container {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            margin: 2rem auto;
+            border: 3px dashed var(--gradient-1);
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        .file-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        
+        .file-preview {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: none;
+        }
+        
+        #uploadText {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .submit-button {
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #2ecc71, #3498db);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 1rem;
+            margin-left: 20rem;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+        }
+    
+
+
+        /* Popup Styling */
+        .popup {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-dark);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            display: none;
+            animation: slideUp 0.3s ease-out forwards;
+            z-index: 1000;
+        }
+
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, 20px);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .hero {
+                margin-top: 200px;
+                padding: 2rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .content {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .file-container {
+                height: 200px;
+            }
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--gradient-1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--gradient-2), var(--gradient-3));
+            border-radius: 5px;
+        }
+</style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">AGROVISTA</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About Us</a></li>
+                <li><a href="{{ url_for('crop_prediction') }}">Crop Prediction</a></li>
+                <li><a href="{{ url_for('disease_prediction') }}" class="active">Disease Prediction</a></li>
+                <li><a href="{{ url_for('e_commerce') }}">E-commerce</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+
+    <div class="hero">
+        <h1>DISEASE PREDICTION</h1>
+    </div>
+
+    <div class="content">
+        <div class="file-container" onclick="document.getElementById('file').click()">
+            <img id="imagePreview" class="file-preview" alt="Image Preview">
+            <p id="uploadText">Click to upload an image</p>
+        </div>
+
+        <form action="/predict" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" id="file" accept="image/*" onchange="previewImage(event)">
+            <button type="submit" class="submit-button">Predict</button>
+        </form>
+
+        <div id="popup" class="popup">File Uploaded Successfully!</div>
+    </div>
+
+    <script>
+        function previewImage(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('imagePreview');
+            const uploadText = document.getElementById('uploadText');
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block'; // Show the image preview
+                    uploadText.style.display = 'none'; // Hide the upload text
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Add event listener to the form to show the popup
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function () {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'block';
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 4000);
+        });
+    </script>
+</body>
+</html>

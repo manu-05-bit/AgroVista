@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGROVISTA</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+        :root {
+            --gradient-1: #a8e6cf;
+            --gradient-2: #dcedc1;
+            --gradient-3: #ffd3b6;
+            --primary-dark: #3d5a80;
+            --text-primary: #2d3436;
+            --text-secondary: #636e72;
+            --white: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+
+        /* Modern Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px var(--shadow-color);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #2ecc71, #3498db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: linear-gradient(45deg, var(--gradient-1), var(--gradient-2));
+            color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+            border-radius: 0 0 50% 50% / 100px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Container Layout */
+        .container {
+            display: grid;
+            grid-template-columns: 4fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Product Grid */
+        #root {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .box {
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+        }
+
+        .image-box {
+            width: 100%;
+            height: 230px;
+            overflow: hidden;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: full;
+            transition: transform 0.3s ease;
+        }
+
+        .box:hover .image-box img {
+            transform: scale(1.1);
+        }
+
+        .button {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .button h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .button h5 {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .button button {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, #2ecc71, #3498db);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .button button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        /* Sidebar Cart */
+        .sidebar {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .sidebar p {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .items h3 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .items h5 {
+            color: var(--text-secondary);
+            margin-bottom: 0.3rem;
+        }
+
+        .items p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .foot {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 2px solid #eee;
+        }
+
+        .foot h3 {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .foot h2 {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, #2ecc71, #3498db);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        button{
+            padding: 0.3rem 0.8rem;
+            background: linear-gradient(45deg, #2ecc71, #3498db);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+                margin-top: 2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .hero {
+                margin-top: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            #root {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--gradient-1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--gradient-2), var(--gradient-3));
+            border-radius: 5px;
+        }
+</style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">AGROVISTA</div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About Us</a></li>
+                <li><a href="{{ url_for('crop_prediction') }}" class="active">Crop Prediction</a></li>
+                <li><a href="{{ url_for('disease_prediction') }}">Disease Prediction</a></li>
+                <li><a href="{{ url_for('e_commerce') }}">E-commerce</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>E-COMMERCE</h1>
+    </div>
+
+    <div class="container">
+        <div id="root"></div>
+        <div class="sidebar">
+            <p>My Cart</p>
+            <div id="cartItem">Your Cart is Empty</div>
+            <div class="foot">
+                <h3>Total</h3>
+                <h2 id="total">0.00</h2>
+                <a href="{{ url_for('shipping') }}">
+                    <button class="btn">Go to Shipping</button>
+                </a>
+                
+
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fetch products from Flask endpoint
+        async function fetchProducts() {
+            const response = await fetch('/get_products');
+            const data = await response.json();
+            displayProducts(data);
+        }
+    
+        function displayProducts(products) {
+            const root = document.getElementById('root');
+            root.innerHTML = ''; // Clear existing products
+    
+            products.forEach(product => {
+                const box = document.createElement('div');
+                box.className = 'box';
+    
+                const imageBox = document.createElement('div');
+                imageBox.className = 'image-box';
+    
+                const img = document.createElement('img');
+                img.src = product.image;
+                imageBox.appendChild(img);
+    
+                const button = document.createElement('div');
+                button.className = 'button';
+    
+                const h3 = document.createElement('h3');
+                h3.textContent = product.name;
+    
+                const h5 = document.createElement('h5');
+                h5.textContent = `$${product.price.toFixed(2)}`;
+    
+                const addButton = document.createElement('button');
+                addButton.textContent = 'Add to Cart';
+                addButton.onclick = () => addToCart(product);
+    
+                button.appendChild(h3);
+                button.appendChild(h5);
+                button.appendChild(addButton);
+    
+                box.appendChild(imageBox);
+                box.appendChild(button);
+    
+                root.appendChild(box);
+            });
+        }
+    
+        let cart = {};
+    
+        function addToCart(product) {
+            if (cart[product.id]) {
+                cart[product.id].quantity += 1; // Increment quantity if item already in cart
+            } else {
+                cart[product.id] = { ...product, quantity: 1 }; // Add new item if not in cart
+            }
+    
+            updateCartDisplay();
+        }
+        function removeFromCart(productId) {
+    if (cart[productId]) {
+        if (cart[productId].quantity > 1) {
+            cart[productId].quantity -= 1; // Decrease quantity if more than one
+        } else {
+            delete cart[productId]; // Delete item if quantity is 1
+        }
+    }
+    updateCartDisplay();
+}
+        function deleteItemFromCart(productId) {
+    if (cart[productId]) {
+        delete cart[productId]; // Remove item completely from cart
+        updateCartDisplay();
+    }
+}
+    
+function updateCartDisplay() {
+    const cartItem = document.getElementById('cartItem');
+    const total = document.getElementById('total');
+
+    cartItem.innerHTML = ''; // Clear existing cart items
+
+    let cartTotal = 0;
+
+    Object.values(cart).forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+
+        const img = document.createElement('img');
+        img.src = item.image;
+
+        const details = document.createElement('div');
+        details.className = 'items';
+
+        const h3 = document.createElement('h3');
+        h3.textContent = item.name;
+
+        const h5 = document.createElement('h5');
+        h5.textContent = `$${item.price.toFixed(2)}`;
+
+        const quantity = document.createElement('p');
+        quantity.textContent = `Quantity: ${item.quantity}`;
+
+        const removeBtn = document.createElement('i');
+        removeBtn.className = 'fa-solid fa-trash';
+        removeBtn.onclick = () => removeFromCart(item.id);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.onclick = () => deleteItemFromCart(item.id);  // Pass item.id here
+
+        details.appendChild(h3);
+        details.appendChild(h5);
+        details.appendChild(quantity);
+        details.appendChild(removeBtn);
+        details.appendChild(deleteButton);  // Append the delete button
+
+        div.appendChild(img);
+        div.appendChild(details);
+
+        cartItem.appendChild(div);
+
+        cartTotal += item.price * item.quantity;
+    });
+
+    total.textContent = cartTotal.toFixed(2);
+}
+
+        window.onload = fetchProducts;
+    </script>
+    
+</body>
+</html>
