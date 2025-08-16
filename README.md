@@ -96,5 +96,5 @@ Connect e-commerce to a real payment gateway.
 
 👨‍💻 Author
 
-Developed by [Your Name] 🌟
+Developed by Vara Devamani 🌟
 Feel free to contribute via Pull Requests.
